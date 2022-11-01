@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		  
+<mapper namespace="com.study.boot.qna.QnaMapper">
+
+	<select id="getTotal" resultType="Integer" parameterType="Pager">
+		SELECT count(*) from QNA
+		WHERE title LIKE CONCAT('%',#{search},'%')
+	</select>
+	
+	<select id="getList" resultType="QnaVO" parameterType="Pager" >
+		select num, title, contents, regDate, writer
+		from QNA
+		WHERE title LIKE CONCAT('%',#{search},'%')
+		ORDER BY NUM DESC 
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<insert id="setAdd" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+		insert into QNA VALUES (0, #{writer},#{title}, #{contents},0,SYSDATE(),0,0,0)
+	</insert>
+	
+	<insert id="setFileAdd" parameterType="QnaFileVO">
+		INSERT INTO QNAFILES VALUES (0,#{num}, #{fileName}, #{oriName})
+	</insert>
+
+</mapper>
