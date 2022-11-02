@@ -48,4 +48,12 @@ public class QnaService {
 		return result ;
 	}
 	
+	public QnaVO getDetail(QnaVO qnaVO)throws Exception{
+		return qnaMapper.getDetail(qnaVO);
+	}
+	
+	public QnaFileVO getQnaFile(QnaFileVO qnaFileVO)throws Exception{
+		return qnaMapper.getQnaFile(qnaFileVO);
+	}
+	
 }

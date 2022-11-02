@@ -5,6 +5,26 @@
 		  
 <mapper namespace="com.study.boot.qna.QnaMapper">
 
+	<select id="getQnaFile" resultType="QnaFileVO" parameterType="QnaFileVO">
+		select * from QNAFILES WHERE FILENUM=#{fileNum}
+	</select>
+
+	<select id="getDetail" resultMap="resultDetail" parameterType="QnaVO">
+		select * from QNA Q left join QNAFILES F on Q.num = F.NUM where Q.num=#{num}
+	</select>
+	<resultMap type="QnaVO" id="resultDetail">
+		<id property="num" column="num"/>
+		<result property="title" column="title"/>
+		<result property="writer" column="writer"/>
+		<result property="contents" column="contents"/>
+		<result property="regDate" column="regDate"/>
+		<collection property="qnaFileVOs" javaType="List" ofType="QnaFileVO">
+			<id property="fileNum" column="FILENUM"/>
+			<result property="fileName" column="FILENAME"/>
+			<result property="oriName" column="ORINAME"/>
+		</collection>
+	</resultMap>
+	
 	<select id="getTotal" resultType="Integer" parameterType="Pager">
 		SELECT count(*) from QNA
 		WHERE title LIKE CONCAT('%',#{search},'%')

@@ -1,6 +1,7 @@
 package com.study.boot.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -25,5 +26,6 @@ public class QnaVO {
 	private Long depth;
 	private MultipartFile[] file;
 	private MultipartFile files;//아무래도 썸머노트랑 연결되는것 같다... 확인해보자
+	private List<QnaFileVO> qnaFileVOs;
 	
 }

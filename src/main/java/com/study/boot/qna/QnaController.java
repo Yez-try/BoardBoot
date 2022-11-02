@@ -53,10 +53,19 @@ public class QnaController {
 			log.info("-------------검증에러발생---------------");
 			mv.setViewName("qna/add");
 		}else {
-			mv.setViewName("redirect:/qna/list");
 			qnaService.setAdd(qnaVO);
+			mv.setViewName("redirect:/qna/detail?num="+qnaVO.getNum());
 		}
 		
+		return mv;
+	}
+	
+	@GetMapping("detail")
+	public ModelAndView getDetail(QnaVO qnaVO, ModelAndView mv)throws Exception{
+		qnaVO = qnaService.getDetail(qnaVO);
+		
+		mv.addObject("qnaVO", qnaVO);
+		mv.setViewName("qna/detail");
 		
 		return mv;
 	}
