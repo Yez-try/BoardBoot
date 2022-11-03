@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +14,9 @@
 	<hr>
 	</form>
 	<div class="container">
-			<a class="btn btn-danger" href="./add" >Write</a> 
+		<sec:authorize access="isAuthenticated()">
+			<a class="btn btn-danger" href="./add" >Write</a>
+		 </sec:authorize>
 		<div class="row">
 			<form action="./list" method="get">
 			<input type="text" name="search" id="search"><button type="submit">검색</button>

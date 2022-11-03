@@ -10,5 +10,8 @@
   		<typeAlias type="com.study.boot.qna.QnaFileVO" alias="QnaFileVO"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="java.util.List" alias="List"/>
+  		<typeAlias type="com.study.boot.member.MemberVO" alias="MemberVO"/>
+  		<typeAlias type="com.study.boot.member.MemberRoleVO" alias="MemberRoleVO"/>
+  		
   	</typeAliases>
   </configuration>
